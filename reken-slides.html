@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Reken slides</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+    <meta name="description"
+       content="Description of your slides for search engines. ">
+
+</head>
+<script>
+    /* The slides object contains all the slide info, edit as needed */
+    const slides = [
+        {
+            title: "Cover slide",
+            left: "assets/sign.jpg",
+            bullets: [
+                "Name",
+                "Location",
+                "Date"
+            ]
+        },
+        {
+            title: "Agenda",
+            right: "assets/sign.jpg",
+            bullets: [
+                "About",
+                "Topic 1",
+                "Topic 2",
+                "Demo",
+                "Summary",
+                "Links",
+            ]
+        },
+        {
+            title: "About",
+            left: "assets/sign.jpg",
+            bullets: [
+                "Name",
+                "Profession",
+                "Experience",
+                "Field of Expertise",
+                "Hobbies",
+            ]
+        },
+        {
+            title: "Topic 1",
+            bullets: [
+                "Bullet 1",
+                "Bullet 2",
+                "Bullet 3",
+                "Bullet 4",
+                "Bullet 5",
+            ],
+            right: "assets/sign.jpg",
+        },
+        {
+            title: "Topic 2",
+            bullets: [
+                "Bullet 1",
+                "Bullet 2",
+                "Bullet 3",
+                "Bullet 4",
+                "Bullet 5",
+            ],
+            right: "assets/sign.jpg",
+        },
+        {
+            title: "Demo",
+            frame: "reken-demo.html"
+        },
+        {
+            title: "Summary",
+            left: "assets/sign.jpg",
+            bullets: [
+                "Summary 1",
+                "Summary 2",
+                "Summary 3",
+                "Summary 4"
+            ]
+        },       
+        {
+            title: "Links",
+            bullets: [
+                "<a href='https://reken.dev'>Reken home page</a> - https://reken.dev",
+                "<a href='https://github.com/hbroek/reken'>Reken on github</a> - https://github.com/hbroek/reken",
+                "<a href='https://github.com/hbroek/reken-slides'>Reken slides on github</a> - https://github.com/hbroek/reken-slides",
+                
+            ],
+            right: "assets/sign.jpg"
+        }
+    ]
+</script>
+<style>
+    :root {
+        /* Change Hue and Saturation for different colors */
+        --color-slides-main-h: 25;
+        --color-slides-main-s: 100%;
+        /* lightness being used for calcs */
+        --color-slides-main-l: 50%;
+        --main-main-color: hsl(var(--color-slides-main-h),
+                var(--color-slides-main-s),
+                var(--color-slides-main-l));
+        --main-light-color: hsl(var(--color-slides-main-h),
+                var(--color-slides-main-s),
+                calc(var(--color-slides-main-l) + 45%));
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        font-size: 2vw;
+        background: var(--main-light-color);
+        overflow-x: hidden;
+    }
+
+    body>header,
+    body>footer {
+        width: 100vw;
+        height: 10vh;
+        margin: 0;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 1em;
+        font-size: 0.5em;
+        background: var(--main-main-color);
+        color: white;
+        z-index: 500;
+    }
+    body>header {
+        top:0;
+    }
+    body>footer {
+        bottom:0;
+    }
+
+    img.icon {
+        height: 8vh;
+    }
+
+    body>footer>div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--main-main-color);
+    }
+
+    body>main {
+        width: 100vw;
+        height: 80vh;
+        padding: 10vh 0;
+        overflow: none;
+    }
+
+    section.slide {
+        width: 100vw;
+        height: 80vh;
+        display: grid;
+        justify-content: center;
+        align-items: flex-start;
+        position: absolute;
+        left: 0;
+        top: 10vh;
+        transition: left 1s, opacity 1s;
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+    }
+
+    section.slide main.slide-content {
+        align-items: flex-start;
+    }
+
+   section.slide:first-child ul {
+        list-style-type: none;
+        align-self: flex-end;
+        margin-block-end: 0;
+        padding-bottom: 0;
+        text-align:right;
+    }
+
+    section.slide:first-child div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    section.slide li {
+        padding-bottom: 1em;
+    }
+    section.slide.current {
+        opacity: 1.0;
+    }
+    main.slide-content {
+        display: flex;
+        width:80vw;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        gap: 1em;
+    }
+    main.slide-content img {
+        margin-top: 1em;
+        height: 50vh;
+        max-width: 90vw;
+    }
+
+    section.slide > div > img {
+        width: 80vw;;
+    }
+    section.slide > div > iframe {
+        border-style: none;
+        width: 80vw;
+        height: 55vh;
+    }
+    button {
+        width: 2em;
+        height: 2em;
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 20px;
+        border-radius: 4px;
+        border-style:none;
+    }
+    button:active {
+        opacity: 0.8;
+    }
+    .hidden {
+        visibility: hidden;
+    }
+    @media (max-width: 800px) {
+         main.slide-content {
+             flex-direction: column;
+             font-size: 2vh;
+         }
+
+    }
+
+    @media print {
+        button, body > header, body > footer {
+            display:none;
+        }
+        body > main {
+            display: block;
+        }
+
+        section.slide {
+            display:block;
+            position: inherit;
+            opacity: 1;
+            page-break-after: always;
+        }
+    }
+</style>
+<script>
+    let currentSlide = 0;
+    if (localStorage.getItem('current-slide')) {
+        currentSlide = parseInt(localStorage.getItem('current-slide'))
+        if (currentSlide > slides.length-1)
+            currentSlide = slides.length > 0 ? slides.length - 1 : 0
+    }
+    let left = () => { currentSlide > 0 ? currentSlide-- : currentSlide };
+    let right = () => { currentSlide < slides.length - 1 ? currentSlide++ : currentSlide };
+    let start = () => { currentSlide = 0 };
+    let end = () => { currentSlide = slides.length - 1 };
+
+    const keyFunctions = {
+        'ArrowLeft': left,
+        'ArrowRight': right,
+        'ArrowUp': left,
+        'ArrowDown': right,
+        'p': left,
+        'n': right,
+        'P': left,
+        'N': right,
+        ' ': right,
+        'h': start,
+        'e': end,
+        'H': start,
+        'E': end,
+    }
+</script>
+<script data-calc>
+    localStorage.setItem('current-slide', currentSlide)
+</script>
+
+<body data-on-keyup="if (keyFunctions[e.key])keyFunctions[e.key]();e.preventDefault();">
+    <header><span><a href="https://www.reken.dev"><img class="icon" src="assets/reken-logo.png"></a></span>
+        <h3></h3>
+        <span></span>
+    </header>
+    <main data-for="slide:slides">
+        <section class="slide" data-style="left:${(slide.index-currentSlide)*100}%" data-class="current:currentSlide==slide.index">
+            <div>
+                <header data-if="slide.item.title">
+                    <h1 data-text="${slide.item.title}"></h1>
+                    <hr>
+                </header>
+                <main class="slide-content">
+                    <img data-if="slide.item.left" data-attr-src="${slide.item.left}"/>
+                    <ul data-if="slide.item.bullets" data-for="bullet:slide.item.bullets">
+                            <li data-html="${bullet.item}"></li>
+                    </ul>
+                    <img data-if="slide.item.right" data-attr-src="${slide.item.right}"/>
+                </main>
+                <iframe data-if="slide.item.frame" width="60vw" height="40vh" data-attr-src="${slide.item.frame}"></iframe>
+                <img data-if="slide.item.bottom" data-attr-src="${slide.item.bottom}"/>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <button data-class="hidden:currentSlide<=0" data-text="<" data-action="currentSlide--"></button>
+        <div>
+            <span data-text="${currentSlide+1}"></span>
+            <span style="font-size:.5em">Powered by Reken</span>
+        </div>
+        <button data-class="hidden:currentSlide>=slides.length-1" data-text=">"
+                data-action="currentSlide++"></button>
+    </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/gh/hbroek/reken/dist/reken.min.js"></script>
+</html>

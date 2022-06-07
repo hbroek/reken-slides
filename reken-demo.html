@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <link rel="stylesheet" href="assets/reken.css"/>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Reken - rotate logo demo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reken - Rotate logo demo</title>
+</head>
+<body>
+    <main>
+        <section>
+            <script>
+                degrees = 0
+            </script>
+            <aside style="display:flex;flex-direction:column;gap:2em;">
+                <img alt="Logo" data-style="transform: rotate(${degrees}deg);" src="assets/reken-logo.png">
+                <input type="range" min="0" max="1080" data-value="degrees">
+            </aside>
+            <header><code class="example">
+                &lt;script&gt;degrees = <span data-text="${degrees}"></span>&lt;/script&gt;<br/>
+                &lt;img alt="Logo" <mark>data-style="transform: rotate(${degrees}deg);"</mark> src="./assets/reken-logo.png"<br/>
+                &lt;input type="range" min="0" max="1080" <mark>data-value="degrees"</mark>&gt;
+            </code></header>
+        </section>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/gh/hbroek/reken/dist/reken.min.js"></script>
+</html>
